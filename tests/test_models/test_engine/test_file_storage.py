@@ -91,6 +91,48 @@ class TestFileStorage(unittest.TestCase):
                 self.assertEqual(line, "{}")
         self.assertIs(self.storage.reload(), None)
 
+    def  test_for_delete(self):
+        """test for delete"""
+        fs = FileStorage()
+
+        # All States
+        all_states = fs.all(State)
+        self.assertEqual(len(all_states.keys()), 0)
+
+        # Create a new State
+        new_state = State()
+        new_state.name = "California"
+        fs.new(new_state)
+        fs.save()
+
+        # All States
+        all_states = fs.all(State)
+        self.assertEqual(len(all_states.keys(), 1)
+
+        # Delete the new State
+        fs.delete(new_state)
+
+        # All States
+        all_states = fs.all(State)
+        self.assertEqual(len(all_states.keys(), 0)
+
+    def test_for_all(self):
+        """test for all"""
+        f = FileStorage()
+
+        new_state = State()
+        new_state.name = "California"
+        f.new(new_state)
+        f.save()
+
+        new_2 = User()
+        new_2.name = "Betty"
+        f.new(new_2)
+        f.save()
+
+        all_1 = f.all(State)
+        self.assertEqual(len(all_1.keys(), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
