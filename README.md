@@ -1,56 +1,104 @@
-# HBNB
+# AirBnb Clone - The Console
+---
+## Description
+##### The command interpreter will be used in subsequent AirBnb projects to manage objects of our classes. This console will allow us to do the following:
+  *  Create new objects
+  *  Retrieve an object
+  *  Do operations on an object
+  *  Change and update object attributes
+  *  Destroy an object
+## Usage
+The console can be run in interactive and non-interactive mode.
+### Non-Interactive Mode
 
-This is the console /command interpreter for the Holberton Airbnb clone project. The console can be used to store objects in and retrieve objects from a JSON.
+To run a command in non-interactive mode, echo the desired command and pipe it into the console like so:
+``` 
+echo "<command>" | ./console.py 
+```
+##### Examples (syntax)
+```
+echo "create BaseModel" | ./console.py
+```
 
-### Supported classes:
-* BaseModel
-* User
-* State
-* City
-* Amenity
-* Place
-* Review
+``` 
+echo "all" | ./console.py
+```
 
-### Commands:
-* create - create an object
-* show - show an object (based on id)
-* destroy - destroy an object
-* all - show all objects, of one type or all types
-* quit/EOF - quit the console
-* help - see descriptions of commands
+```
+echo "show BaseModel 1123-2312312-241214-213134" | ./console.py
+```
 
-To start, navigate to the project folder and enter `./console.py` in the shell.
+### Interactive Mode
 
-#### Create
-`create <class name>`
-Ex:
-`create BaseModel`
+To run in interactive mode:
 
-#### Show
-`show <class name> <object id>`
-Ex:
-`show User my_id`
+``` 
+./console.py 
+```
+Then type the desired commands inside of the program.
 
-#### Destroy
-`destroy <class name> <object id>`
-Ex:
-`destroy Place my_place_id`
+##### Examples (syntax)
 
-#### All
-`all` or `all <class name>`
-Ex:
-`all` or `all State`
+```
+(hbnb) create BaseModel
+```
 
-#### Quit
-`quit` or `EOF`
+```
+(hbhb) all
+```
 
-#### Help
-`help` or `help <command>`
-Ex:
-`help` or `help quit`
+```
+(hbnhb) show BaseModel 1123-2312312-241214-213134"
+```
 
-Additionally, the console supports `<class name>.<command>(<parameters>)` syntax.
-Ex:
-`City.show(my_city_id)`
+## Commands
 
-test
+Command | Description
+--- | --- 
+`quit` | Exit the program
+`EOF` | Exit the program
+`create <class>` | Create an instance of a class
+`show <class> <id>` | Print the string representation of an instance of a class
+`destroy <class> <id>` | Delete instance of a class
+`update <class> <id> <attribute name> "<attribute value>"` | Update an attribute of an instance
+`all` | Print all string representations of all instances
+`all <class>` | Print all string representations of all instances of a class 
+`<class>.all()` | See `all`
+`<class>.count()` | Return number of instances of a class
+`<class>.show(<id>)` | See `show`
+`<class>.destroy(<id>)` | See `destroy`
+`<class>.update(<id>, <attribute name>, <attribute value>)` | See `update`
+
+##### Examples (output)
+
+```
+(hbnb) create User
+8cf6930e-da38-4ecb-887a-841d7de188cb
+```
+
+```
+(hbnb) show User 8cf6930e-da38-4ecb-887a-841d7de188cb
+[BaseModel] (8cf6930e-da38-4ecb-887a-841d7de188cb) {'id': '8cf6930e-da38-4ecb-887a-841d7de188cb', 'updated_at': datetime.datetime(2019, 7, 3, 22, 37, 53, 44113), 'created_at': datetime.datetime(2019, 7, 3, 22, 37, 53, 44069)}
+```
+
+```
+(hbnb) User.count()
+1
+```
+
+## Files
+
+File Name | Description
+--- | ---
+`console.py` | Program for running the HBNB console
+`models/basemodel.py` | Defines the BaseModel class 
+`models/engine/file_storage.py` | Defines the FileStorage class, handles the database
+`models/user.py` | Defines the User class, subclass of BaseModel
+`models/city.py` | Defines the City  class, subclass of BaseModel
+`models/state.py` | Defines the User class, subclass of BaseModel
+`models/amenity.py` | Defines the Amenity class, subclass of BaseModel
+`models/review.py` | Defines the Review class, subclass of BaseModel
+`models/place.py` | defines the place class, subclass of basemodel
+`tests/` | the test directory contains all unittest files for each class, separated by class name
+
+---
