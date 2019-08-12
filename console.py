@@ -53,7 +53,9 @@ class HBNBCommand(cmd.Cmd):
                     elif is_float(kv[1]):
                         setattr(obj, kv[0], float(kv[1]))
                     elif kv[1].startswith('"') and kv[1].endswith('"'):
-                        setattr(obj, kv[0], kv[1])
+                        if "_" in kv[1]:
+                            kv[1] = kv[1].replace("_", " ")
+                        setattr(obj, kv[0], kv[1][1:-1])
                     else:
                         continue
             obj.save()
