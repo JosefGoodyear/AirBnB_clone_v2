@@ -232,5 +232,12 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(
                 "** value missing **\n", f.getvalue())
 
+    def test_create_holder(self):
+        pass
+
+    def test_create_holder2(self):
+        pass
+
+
 if __name__ == "__main__":
     unittest.main()

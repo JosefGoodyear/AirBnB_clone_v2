@@ -69,4 +69,4 @@ class FileStorage:
         key_check = ".".join([type(obj).__name__, obj.id])
         if key_check in self.__objects:
             del self.__objects[key_check]
-            obj.save()
+            self.save()

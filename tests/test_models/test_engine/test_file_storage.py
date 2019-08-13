@@ -119,6 +119,22 @@ class TestFileStorage(unittest.TestCase):
         all_1 = f.all(State)
         self.assertEqual(len(all_1.keys()), 1)
 
+    def test_holder1(self):
+        """testing placeholder"""
+        pass
+
+    def test_holder2(self):
+        """testing placeholder"""
+        pass
+
+    def test_holder3(self):
+        """testing placeholder"""
+        pass
+
+    def test_holder4(self):
+        """testing placeholder"""
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()
