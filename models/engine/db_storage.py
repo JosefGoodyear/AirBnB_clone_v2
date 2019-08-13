@@ -22,5 +22,6 @@ class DBStorage:
         """
         query all objects from the current db session, based on class name
         """
-
+        if cls=None:
+            result = self.__session.query().all():
 
