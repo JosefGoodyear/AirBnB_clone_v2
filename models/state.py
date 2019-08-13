@@ -4,6 +4,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
+
 class State(BaseModel, Base):
     """This is the class for State
     Attributes:
@@ -11,7 +12,9 @@ class State(BaseModel, Base):
     """
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
-    cities = relationship("City", cascade="all, delete-orphan", backref="state")
+    cities = relationship("City",
+                          cascade="all, delete-orphan",
+                          backref="state")
 
     @property
     def cities(self):
@@ -20,4 +23,3 @@ class State(BaseModel, Base):
             if self.id == city.state_id:
                 city_list.append(city)
         return city_list
-

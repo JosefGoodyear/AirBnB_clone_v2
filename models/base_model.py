@@ -8,6 +8,8 @@ from sqlalchemy import Column, String, DateTime
 
 
 Base = declarative_base()
+
+
 class BaseModel:
     """This class will defines all common attributes/methods
     for other classes
@@ -69,5 +71,9 @@ class BaseModel:
         if "_sa_instance_state" in my_dict:
             del my_dict["_sa_instance_state"]
         return my_dict
+
     def delete(self):
+        """
+        delete storage
+        """
         models.storage.delete()
