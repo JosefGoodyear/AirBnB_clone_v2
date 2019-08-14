@@ -38,7 +38,7 @@ class DBStorage:
         query all objects from the current db session, based on class name
         """
         if cls is None:
-            results = self.__session.query(City, State, User).all()
+            results = self.__session.query(City, State, User, Place).all()
         else:
             results = self.__session.query(eval(cls)).all()
         result_dict = {}
