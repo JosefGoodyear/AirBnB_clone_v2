@@ -7,7 +7,6 @@ from models.city import City
 from models.user import User
 
 
-
 class Review(BaseModel, Base):
     """This is the class for Review
     Attributes:
