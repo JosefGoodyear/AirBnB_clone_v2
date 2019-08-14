@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy import ForeignKey
 from models.city import City
 from models.user import User
+from sqlalchemy.orm import relationship
 
 
 class Place(BaseModel, Base):
@@ -34,3 +35,15 @@ class Place(BaseModel, Base):
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
     amenity_ids = []
+    reviews = relationship("Review",
+                           cascade="all, delete-orphan",
+                           backref="place")
+
+    @property
+    def reviews(self):
+        """getter attribute that returns the list of Review instances"""
+        review_list = []
+        for review in self.reviews:
+            if self.id == review.place_id:
+                review_list.append(review)
+        return review_list
