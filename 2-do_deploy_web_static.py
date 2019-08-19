@@ -1,18 +1,20 @@
 #!/usr/bin/python3
 """ deploy the archived file to your server """
-from os import path
-from fabric.api import run, put
+import os
+from fabric.api import *
+
+env.hosts = ['34.74.63.236', '35.237.173.143']
 
 
 def do_deploy(archive_path):
     """ deploy the archived file to your server """
-    if not path.exists(archive_path):
+    if not os.path.exists(archive_path):
         return False
     chk = put(archive_path, '/tmp/')
     if chk.failed:
         return False
     relative_file = archive_path.rsplit('/', 1)[-1]
-    remote_directory_name = relative_file.rsplit('.')[0]
+    remote_directory = relative_file.rsplit('.')[0]
 
     chk = run('mkdir -p /data/web_static/releases/{}/'
               .format(remote_directory))
