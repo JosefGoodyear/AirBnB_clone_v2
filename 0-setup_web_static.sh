@@ -17,8 +17,7 @@ fi
 if [ ! -d /data/web_static/releases/test/ ]; then
 	mkdir /data/web_static/releases/test/
 fi
-printf "
-<html>
+printf "<html>
   <head>
   </head>
   <body>
