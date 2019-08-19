@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Set up web servers for deployment
 apt-get update
-apt-get install nginx
+apt-get -y install nginx
 if [ ! -d /data/ ]; then
 	mkdir /data/
 fi
