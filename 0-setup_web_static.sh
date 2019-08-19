@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 # Set up web servers for deployment
-apt-get update
-apt-get -y install nginx
+
+if ! which nginx > /dev/null 2>&1; then
+    apt-get update
+    apt-get -y install nginx
+    ufw allow 'Nginx HTTP'
+fi
+
 if [ ! -d /data/ ]; then
 	mkdir /data/
 fi
@@ -25,6 +30,6 @@ printf "<html>
   </body>
 </html>" > /data/web_static/releases/test/index.html
 ln -sf /data/web_static/releases/test/ /data/web_static/current
-sudo chown -R ubuntu:ubuntu /data/
+chown -R ubuntu:ubuntu /data/
 sed -i "/server_name _;/a location /hbnb_static {\n\t alias /data/web_static/current/;\n\t}" /etc/nginx/sites-available/default
 service nginx restart
