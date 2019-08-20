@@ -10,10 +10,10 @@ env.hosts = ['34.74.63.236', '35.237.173.143']
 
 def deploy():
     """ run do_pack and do_deploy """
-    res = do_pack()
-    if not res:
+    archive = do_pack()
+    if not archive:
         return False
-    res = do_deploy(archive_path)
+    res = do_deploy(archive)
     return res
 
 
