@@ -11,7 +11,7 @@ env.hosts = ['34.74.63.236', '35.237.173.143']
 def deploy():
     """ run do_pack and do_deploy """
     archive = do_pack()
-    if not archive:
+    if archive is None:
         return False
     res = do_deploy(archive)
     return res
@@ -24,7 +24,8 @@ def do_pack():
     check = local("tar -czvf versions/web_static_{}.tgz web_static/"
                   .format(time_now))
     if check.succeeded:
-        return check
+        return "versions/web_static_{}.tgz".format(time_now)
+    return None
 
 
 def do_deploy(archive_path):
