@@ -3,7 +3,9 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-
+from os import getenv
+import models
+from models.city import City
 
 class State(BaseModel, Base):
     """This is the class for State
@@ -16,10 +18,13 @@ class State(BaseModel, Base):
                           cascade="all, delete-orphan",
                           backref="state")
 
-    @property
-    def cities(self):
-        city_list = []
-        for city in self.cities:
-            if self.id == city.state_id:
-                city_list.append(city)
-        return city_list
+
+    if getenv('HBNB_TYPE_STORAGE') != 'db':
+        @property
+        def cities(self):
+            city_list = []
+
+            for city in models.storage.all(City).values():
+                if self.id == city.state_id:
+                    city_list.append(city)
+            return city_list
