@@ -41,7 +41,7 @@ class DBStorage:
             results = self.__session.query(City, State, User, Place,
                                            Review).all()
         else:
-            results = self.__session.query(eval(cls)).all()
+            results = self.__session.query(cls).all()
         result_dict = {}
         for row in results:
             key = ".".join([type(row).__name__, row.id])
