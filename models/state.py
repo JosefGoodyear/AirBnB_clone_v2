@@ -28,11 +28,3 @@ class State(BaseModel, Base):
                 if self.id == city.state_id:
                     city_list.append(city)
             return city_list
-    else:
-        @property
-        def cities(self):
-            city_list = []
-            for city in self.cities:
-                if self.id == city.state_id:
-                    city_list.append(city)
-            return city_list
