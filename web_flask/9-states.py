@@ -14,7 +14,7 @@ def clean_up(self):
 @app.route('/states', strict_slashes=False)
 def list_states():
     """ list the states in the db """
-    d = storage.all('State')
+    d = storage.all(State)
     return render_template('9-states.html', d=d, one_state=False)
 
 
@@ -22,7 +22,7 @@ def list_states():
 def states_by_id(id):
     """ list cities for state in the db """
     state = 0
-    d = storage.all('State')
+    d = storage.all(State)
     state_id = 'State.' + id
     if state_id in d:
         state = d[state_id]
